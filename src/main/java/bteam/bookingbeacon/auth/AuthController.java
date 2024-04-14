@@ -19,7 +19,6 @@ public class AuthController {
 
     @PostMapping("join")
     public void join(@RequestBody UserEntity user) {
-        System.out.println("🎃" + user.email);
         this.authService.join(user);
     }
 
