@@ -1,9 +1,10 @@
 package bteam.bookingbeacon.auth;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.catalina.User;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -14,5 +15,15 @@ public class AuthController {
     @GetMapping("login")
     public String login() {
         return this.authService.login();
+    }
+
+    @PostMapping("join")
+    public void join(@RequestBody UserEntity user) {
+        this.authService.join(user);
+    }
+
+    @GetMapping("{userId}")
+    public Optional<UserEntity> findUserById(@PathVariable Long userId) {
+        return this.authService.findUserById(userId);
     }
 }
